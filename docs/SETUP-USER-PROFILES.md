@@ -2,11 +2,14 @@
 
 ## Overview
 
-This implementation adds user profile management to your Expo app with Supabase. Users can now edit their first name and last name from the ProfileScreen, with data automatically synced to Supabase.
+This implementation adds user profile management to your Expo app with Supabase.
+Users can now edit their first name and last name from the ProfileScreen, with
+data automatically synced to Supabase.
 
 ## Architecture
 
-- **Separation of Concerns**: `AuthProvider` handles authentication, `UserProvider` handles user profile data
+- **Separation of Concerns**: `AuthProvider` handles authentication,
+  `UserProvider` handles user profile data
 - **Type Safety**: Full TypeScript support with proper interfaces
 - **Auto-sync**: Profile data automatically loads when user signs in
 - **Optimistic Updates**: UI updates immediately while syncing to backend
@@ -15,7 +18,8 @@ This implementation adds user profile management to your Expo app with Supabase.
 
 ### 1. Run the SQL Migration
 
-Execute the SQL commands in `lib/database-schema.sql` in your Supabase SQL editor:
+Execute the SQL commands in `lib/database-schema.sql` in your Supabase SQL
+editor:
 
 1. Go to your Supabase dashboard
 2. Navigate to SQL Editor
@@ -53,7 +57,7 @@ Execute the SQL commands in `lib/database-schema.sql` in your Supabase SQL edito
 ### In Components
 
 ```tsx
-import { useUser } from "@/context/user-provider";
+import { useUser } from '@/context/user-provider';
 
 function MyComponent() {
   const { profile, isLoading, updateProfile } = useUser();
@@ -63,7 +67,7 @@ function MyComponent() {
   return (
     <View>
       <Text>Welcome, {profile?.first_name}!</Text>
-      <Button onPress={() => updateProfile({ first_name: "New Name" })}>
+      <Button onPress={() => updateProfile({ first_name: 'New Name' })}>
         Update Name
       </Button>
     </View>
@@ -76,8 +80,8 @@ function MyComponent() {
 ```tsx
 // Update profile
 await updateProfile({
-  first_name: "John",
-  last_name: "Doe",
+  first_name: 'John',
+  last_name: 'Doe',
 });
 
 // Refresh profile data

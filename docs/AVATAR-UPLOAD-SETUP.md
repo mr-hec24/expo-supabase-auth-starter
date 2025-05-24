@@ -1,20 +1,25 @@
 # Avatar Upload Feature
 
-This guide explains how the avatar upload feature works and how to set it up properly.
+This guide explains how the avatar upload feature works and how to set it up
+properly.
 
 ## Features
 
-- **Profile Picture Upload**: Users can upload profile pictures from their device
+- **Profile Picture Upload**: Users can upload profile pictures from their
+  device
 - **Cross-Platform Support**: Works on iOS, Android, and Web
 - **Image Optimization**: Automatically resizes and compresses images
-- **Secure Storage**: Images are stored in Supabase Storage with proper access controls
-- **Smart Replacement**: Replaces existing avatars instead of creating duplicates
+- **Secure Storage**: Images are stored in Supabase Storage with proper access
+  controls
+- **Smart Replacement**: Replaces existing avatars instead of creating
+  duplicates
 - **Privacy-First**: Removes EXIF data from uploaded images
 
 ## Prerequisites
 
 1. **Supabase Project**: You need a Supabase project with Storage enabled
-2. **Environment Variables**: Ensure your `.env.local` has the correct Supabase credentials
+2. **Environment Variables**: Ensure your `.env.local` has the correct Supabase
+   credentials
 3. **Permissions**: The app will request photo library permissions
 
 ## Setup Instructions
@@ -28,7 +33,8 @@ Run the SQL from `scripts/database-schema.sql` in your Supabase SQL editor to:
 - Create the `avatars` storage bucket
 - Configure storage policies
 
-Alternatively, run just the storage setup from `scripts/setup-avatar-storage.sql`.
+Alternatively, run just the storage setup from
+`scripts/setup-avatar-storage.sql`.
 
 ### 2. Verify Storage Bucket
 

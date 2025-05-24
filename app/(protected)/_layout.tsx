@@ -1,8 +1,8 @@
-import { useAuth } from "@/context/auth-provider";
-import { Redirect, Stack } from "expo-router";
+import { useAuth } from '@/context/auth-provider';
+import { Redirect, Stack } from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: "(tabs)",
+  initialRouteName: '(tabs)',
 };
 
 export default function ProtectedLayout() {
@@ -13,7 +13,7 @@ export default function ProtectedLayout() {
   }
 
   if (!session) {
-    return <Redirect href="/welcome" />;
+    return <Redirect href='/welcome' />;
   }
 
   return (
@@ -22,7 +22,7 @@ export default function ProtectedLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name='(tabs)' />
     </Stack>
   );
 }

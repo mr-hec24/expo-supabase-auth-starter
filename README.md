@@ -1,6 +1,10 @@
 # Expo Supabase Auth Starter
 
-A modern, full-stack mobile and web application starter built with **Expo**, **Supabase**, **TypeScript**, and **Gluestack UI v2**. This starter provides a complete authentication system with user profiles, avatar uploads, and a beautiful, responsive interface that works seamlessly across iOS, Android, and web platforms.
+A modern, full-stack mobile and web application starter built with **Expo**,
+**Supabase**, **TypeScript**, and **Gluestack UI v2**. This starter provides a
+complete authentication system with user profiles, avatar uploads, and a
+beautiful, responsive interface that works seamlessly across iOS, Android, and
+web platforms.
 
 ## ✨ Features
 
@@ -253,12 +257,15 @@ We welcome contributions! Please:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
+for details.
 
 ## 🆘 Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-username/expo-supabase-auth-starter/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/expo-supabase-auth-starter/discussions)
+- **Issues**:
+  [GitHub Issues](https://github.com/your-username/expo-supabase-auth-starter/issues)
+- **Discussions**:
+  [GitHub Discussions](https://github.com/your-username/expo-supabase-auth-starter/discussions)
 - **Documentation**: Check the `docs/` folder for detailed guides
 
 ## 🙏 Acknowledgments

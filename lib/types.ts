@@ -19,7 +19,7 @@ export interface Database {
     Tables: {
       profiles: {
         Row: UserProfile;
-        Insert: Omit<UserProfile, "id" | "created_at" | "updated_at">;
+        Insert: Omit<UserProfile, 'id' | 'created_at' | 'updated_at'>;
         Update: UpdateUserProfileData;
       };
     };
