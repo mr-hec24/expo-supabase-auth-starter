@@ -11,6 +11,7 @@ import { pickImage } from '@/lib/image-upload';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, SafeAreaView, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 
 export default function ProfileScreen() {
   const { signOut } = useAuth();
@@ -30,6 +31,7 @@ export default function ProfileScreen() {
   const [isSigningOut, setIsSigningOut] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
 
+  const [selectedSetting, setSelectedSetting] = useState('none');
   // Load profile data into form when available
   useEffect(() => {
     if (profile) {
@@ -155,131 +157,131 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView className='flex h-full w-full flex-1 bg-background'>
-      <VStack space='xl' className='h-full w-full justify-start p-6 pt-12'>
-        <VStack space='md' className='w-full items-center'>
-          <Heading size='2xl'>Profile</Heading>
-          <Text className='text-center'>Manage your account information</Text>
+        <VStack space='xl' className='h-full w-full justify-start p-6 pt-12'>
+          <VStack space='md' className='w-full items-center'>
+            <Heading size='2xl'>Profile</Heading>
+            <Text className='text-center'>Manage your account information</Text>
+          </VStack>
+
+          {/* User Avatar */}
+          <VStack space='md' className='w-full items-center'>
+            <TouchableOpacity
+              onPress={handleAvatarUpload}
+              disabled={isUploadingAvatar}
+              activeOpacity={0.7}
+            >
+              <Avatar size='2xl'>
+                <AvatarFallbackText>{getInitials()}</AvatarFallbackText>
+                {getAvatarSource() && <AvatarImage source={getAvatarSource()} />}
+                <AvatarBadge className='bg-primary-500 items-center justify-center'>
+                  {isUploadingAvatar ? (
+                    <ActivityIndicator size='small' color='white' />
+                  ) : (
+                    <CameraIcon />
+                  )}
+                </AvatarBadge>
+              </Avatar>
+            </TouchableOpacity>
+            <Text className='text-sm text-gray-500 text-center'>
+              Tap to {profile?.avatar_url ? 'change' : 'upload'} profile picture
+            </Text>
+          </VStack>
+
+          {/* Profile Inputs */}
+          <VStack space='lg' className='w-full'>
+            <FormControl
+              size='md'
+              isDisabled={isUpdating || isUploadingAvatar}
+              isReadOnly={false}
+              isRequired={false}
+              className='w-full'
+            >
+              <FormControlLabel>
+                <FormControlLabelText>First Name</FormControlLabelText>
+              </FormControlLabel>
+              <Input className='w-full' size='md' variant='outline'>
+                <InputField
+                  type='text'
+                  placeholder='Enter your first name'
+                  value={firstName}
+                  onChangeText={text => setFirstName(text)}
+                  className='w-full'
+                />
+              </Input>
+            </FormControl>
+
+            <FormControl
+              size='md'
+              isDisabled={isUpdating || isUploadingAvatar}
+              isReadOnly={false}
+              isRequired={false}
+              className='w-full'
+            >
+              <FormControlLabel>
+                <FormControlLabelText>Last Name</FormControlLabelText>
+              </FormControlLabel>
+              <Input className='w-full' size='md' variant='outline'>
+                <InputField
+                  type='text'
+                  placeholder='Enter your last name'
+                  value={lastName}
+                  onChangeText={text => setLastName(text)}
+                  className='w-full'
+                />
+              </Input>
+            </FormControl>
+
+            <FormControl
+              size='md'
+              isDisabled={true}
+              isReadOnly={true}
+              isRequired={false}
+              className='w-full'
+            >
+              <FormControlLabel>
+                <FormControlLabelText>Email</FormControlLabelText>
+              </FormControlLabel>
+              <Input className='w-full' size='md' variant='outline'>
+                <InputField
+                  type='text'
+                  placeholder='Email address'
+                  value={profile?.email || ''}
+                  className='w-full'
+                  keyboardType='email-address'
+                  autoCapitalize='none'
+                  editable={false}
+                />
+              </Input>
+            </FormControl>
+          </VStack>
+
+          {/* Action Buttons */}
+          <VStack space='md' className='w-full mt-auto'>
+            <Button
+              size='lg'
+              variant='solid'
+              action='primary'
+              className='w-full'
+              onPress={handleSaveProfile}
+              isDisabled={!hasChanges || isUpdating || isUploadingAvatar}
+            >
+              <ButtonText>
+                {isUpdating ? 'Saving...' : hasChanges ? 'Save Changes' : 'No Changes'}
+              </ButtonText>
+            </Button>
+
+            <Button
+              size='lg'
+              variant='outline'
+              action='secondary'
+              className='w-full'
+              onPress={handleSignOut}
+              isDisabled={isSigningOut || isUpdating || isUploadingAvatar}
+            >
+              <ButtonText>{isSigningOut ? 'Signing Out...' : 'Sign Out'}</ButtonText>
+            </Button>
+          </VStack>
         </VStack>
-
-        {/* User Avatar */}
-        <VStack space='md' className='w-full items-center'>
-          <TouchableOpacity
-            onPress={handleAvatarUpload}
-            disabled={isUploadingAvatar}
-            activeOpacity={0.7}
-          >
-            <Avatar size='2xl'>
-              <AvatarFallbackText>{getInitials()}</AvatarFallbackText>
-              {getAvatarSource() && <AvatarImage source={getAvatarSource()} />}
-              <AvatarBadge className='bg-primary-500 items-center justify-center'>
-                {isUploadingAvatar ? (
-                  <ActivityIndicator size='small' color='white' />
-                ) : (
-                  <CameraIcon />
-                )}
-              </AvatarBadge>
-            </Avatar>
-          </TouchableOpacity>
-          <Text className='text-sm text-gray-500 text-center'>
-            Tap to {profile?.avatar_url ? 'change' : 'upload'} profile picture
-          </Text>
-        </VStack>
-
-        {/* Profile Inputs */}
-        <VStack space='lg' className='w-full'>
-          <FormControl
-            size='md'
-            isDisabled={isUpdating || isUploadingAvatar}
-            isReadOnly={false}
-            isRequired={false}
-            className='w-full'
-          >
-            <FormControlLabel>
-              <FormControlLabelText>First Name</FormControlLabelText>
-            </FormControlLabel>
-            <Input className='w-full' size='md' variant='outline'>
-              <InputField
-                type='text'
-                placeholder='Enter your first name'
-                value={firstName}
-                onChangeText={text => setFirstName(text)}
-                className='w-full'
-              />
-            </Input>
-          </FormControl>
-
-          <FormControl
-            size='md'
-            isDisabled={isUpdating || isUploadingAvatar}
-            isReadOnly={false}
-            isRequired={false}
-            className='w-full'
-          >
-            <FormControlLabel>
-              <FormControlLabelText>Last Name</FormControlLabelText>
-            </FormControlLabel>
-            <Input className='w-full' size='md' variant='outline'>
-              <InputField
-                type='text'
-                placeholder='Enter your last name'
-                value={lastName}
-                onChangeText={text => setLastName(text)}
-                className='w-full'
-              />
-            </Input>
-          </FormControl>
-
-          <FormControl
-            size='md'
-            isDisabled={true}
-            isReadOnly={true}
-            isRequired={false}
-            className='w-full'
-          >
-            <FormControlLabel>
-              <FormControlLabelText>Email</FormControlLabelText>
-            </FormControlLabel>
-            <Input className='w-full' size='md' variant='outline'>
-              <InputField
-                type='text'
-                placeholder='Email address'
-                value={profile?.email || ''}
-                className='w-full'
-                keyboardType='email-address'
-                autoCapitalize='none'
-                editable={false}
-              />
-            </Input>
-          </FormControl>
-        </VStack>
-
-        {/* Action Buttons */}
-        <VStack space='md' className='w-full mt-auto'>
-          <Button
-            size='lg'
-            variant='solid'
-            action='primary'
-            className='w-full'
-            onPress={handleSaveProfile}
-            isDisabled={!hasChanges || isUpdating || isUploadingAvatar}
-          >
-            <ButtonText>
-              {isUpdating ? 'Saving...' : hasChanges ? 'Save Changes' : 'No Changes'}
-            </ButtonText>
-          </Button>
-
-          <Button
-            size='lg'
-            variant='outline'
-            action='secondary'
-            className='w-full'
-            onPress={handleSignOut}
-            isDisabled={isSigningOut || isUpdating || isUploadingAvatar}
-          >
-            <ButtonText>{isSigningOut ? 'Signing Out...' : 'Sign Out'}</ButtonText>
-          </Button>
-        </VStack>
-      </VStack>
     </SafeAreaView>
   );
 }

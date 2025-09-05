@@ -1,14 +1,24 @@
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
+import DayView from '@/components/DayView';
 import { Text, View } from '@/components/Themed';
+import { List } from 'immutable';
+
+
+const exercises_temp = List([
+        {exercise: 'Push Ups', reps: 10, sets: 3},
+        {exercise: 'Sit Ups', reps: 15, sets: 3},
+        {exercise: 'Pull Ups', reps: 5, sets: 3},
+        {exercise: 'Squats', reps: 20, sets: 3},
+
+    ]);
 
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+      <Text style={styles.title}>Calendar View</Text>
       <View style={styles.separator} lightColor='#eee' darkColor='rgba(255,255,255,0.1)' />
-      <EditScreenInfo path='app/(tabs)/two.tsx' />
+      <DayView month={2} day={24} year={2003} exercises = {exercises_temp}/>
     </View>
   );
 }

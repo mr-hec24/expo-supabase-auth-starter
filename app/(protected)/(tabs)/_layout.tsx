@@ -27,6 +27,13 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name='two'
+        options={{
+          title: 'Calendar',
+          tabBarIcon: ({ color }) => <TabBarIcon name='calendar' color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name='index'
         options={{
           title: 'Home',
@@ -34,17 +41,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='two'
-        options={{
-          title: 'Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name='user' color={color} />,
-        }}
-      />
-      <Tabs.Screen
         name='profile'
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color }) => <TabBarIcon name='user' color={color} />,
+          title: 'Seetings',
+          tabBarIcon: ({ color }) => <TabBarIcon name='gear' color={color} />,
         }}
       />
     </Tabs>

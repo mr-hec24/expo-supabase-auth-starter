@@ -19,9 +19,9 @@ export default function Welcome() {
   return (
     <SafeAreaView className='flex h-full flex-1 bg-background'>
       <VStack space='2xl' className='h-full items-center justify-center p-4'>
-        <Heading>Welcome to Thirty Plants</Heading>
+        <Heading>Welcome to Reps & Rise</Heading>
         <Text>
-          Thirty Plants is a plant tracking app that helps you track your plants and their growth.
+          Reps & Rise is a fitness app designed to help you track your workouts and stay motivated.
         </Text>
         <VStack space='md'>
           <Button size='md' variant='solid' action='primary' onPress={handleSignIn}>
